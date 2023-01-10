@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Dialog class="sapUiSizeCompact" contentHeight="70%" contentWidth="15%" title="{i18n>correctionId}" afterClose="onCorrectionIdClose">
+		<Toolbar>
+			<SearchField search="onCorrectionIdSearch" width="100%"/>
+		</Toolbar>
+		<Table backgroundDesign="Translucent" includeItemInSelection="true" items="{path: 'CorrectionIdModel>/CorrectionId'}" mode="SingleSelectLeft"
+			selectionChange="onCorrectionIdSelChange" growing="true" growingThreshold="20" growingScrollToLoad="true">
+			<columns>
+				<Column demandPopin="true" minScreenWidth="Tablet">
+					<header>
+						<Label design="Bold" text="{i18n>correctionId}"/>
+					</header>
+				</Column>			
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{CorrectionIdModel>correctionId}"/>						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button press="onCorrectionIdCancel" text="{i18n>cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,252 @@
+<mvc:View
+    controllerName="com.Techbol.techbol.controller.Object"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout" 
+    xmlns:core="sap.ui.core" 
+    xmlns:uxap="sap.uxap" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:semantic="sap.f.semantic">
+
+  	<uxap:ObjectPageLayout id="ObjectPageLayout" editHeaderButtonPress="handleEditBtnPress" showAnchorBar="true" showHeaderContent="true"
+		upperCaseAnchorBar="false" showFooter="true" class="sapUiSizeCompact ObjectClass">
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader objectTitle="{BindingModel>/View} : {CreateModel>/CorrectionId}">			
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:sections>
+			<uxap:ObjectPageSection titleUppercase="false" id="Gen" title="{i18n>generalInformation}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection>
+						<uxap:blocks>
+                        	<f:SimpleForm singleContainerFullSize="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanS="12" labelSpanM="4" labelSpanL="4"
+								emptySpanXL="0" emptySpanS="0" emptySpanM="0" emptySpanL="0" editable="true" columnsXL="3" columnsM="3" columnsL="3" adjustLabelSpan="false">
+								<f:content>
+									<core:Title/>      
+                                     <Label text="{i18n>plant}" design="Bold" required="true"></Label>
+                                        <Input id="PlantId" value="{CreateModel>/Plant}" showValueHelp="true" valueHelpRequest="onPlantValueHelpRequest" valueHelpOnly="true"
+                                             enabled="{BindingModel>/PlantEdit}">                       
+                                               <layoutData>
+											    <l:GridData span="XL6 L6 M6 S12"/>
+										        </layoutData>  
+                                        </Input>     
+                                    <Label text="{i18n>actDate}" design="Bold" required="true"></Label>
+                                        <DatePicker id="actDateId" maxDate="{oDateModel>/maxDate}" change="onActDateChange" value="{CreateModel>/ActDate}" enabled="{BindingModel>/ActDateEdit}" placeholder="MM/dd/yyyy" displayFormat="MM/dd/yyyy" valueFormat="MM/dd/yyyy">
+                                            <layoutData>
+                                                <l:GridData span="XL6 L6 M6 S12"/>
+                                            </layoutData>                     
+                                        </DatePicker>  
+
+                                    <core:Title/>
+                                    <Label text="{i18n>shift}" design="Bold" required="true"></Label>
+                                        <ComboBox id="shiftId" enabled="{BindingModel>/ShiftEdit}" selectedKey="{CreateModel>/Shift}"  selectionChange="onShiftChange" showSecondaryValues="true">
+                                            <core:ListItem key="01" text="01" additionalText="First Shift 01"/>
+                                            <core:ListItem key="02" text="02" additionalText="Second Shift 02"/>
+                                            <core:ListItem key="03" text="03" additionalText="Third Shift 03"/>                                     
+                                            <layoutData>
+                                                <l:GridData span="XL6 L6 M6 S12"/>
+                                            </layoutData>
+                                        </ComboBox>                                 
+                                   		
+                                	<Label text="{i18n>status}" design="Bold"> </Label>
+                            			<Text text="{CreateModel>/Status}">
+                                            <layoutData>
+									    		<l:GridData span="XL6 L6 M6 S12"/>
+										    </layoutData>  
+                                        </Text>           
+                                    				
+									<core:Title/>
+									<Label text="{i18n>attach}" design="Bold">
+										<layoutData>
+											<l:GridData span="XL2 L3 M2 S12"/>
+										</layoutData>
+									</Label>									
+                                    <ScrollContainer height="100px" vertical="true" class="scrollClass">                              
+                                        <UploadCollection
+                                            id="Attachment"
+                                            class="uploadClass"                                          
+                                            multiple="true"
+                                            sameFilenameAllowed="true"
+                                            instantUpload="false"
+                                            showSeparators="All"
+                                            change="onChange"
+                                            uploadComplete="onUploadComplete"
+                                            beforeUploadStarts="onBeforeUploadStarts"
+                                            uploadUrl="{ResourceModel>/sServiceUrl}"
+                                            noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload"
+                                        />
+                                    </ScrollContainer>
+								</f:content>
+							</f:SimpleForm>                 
+                        </uxap:blocks>            
+                    </uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" id="bol" title="{i18n>billofLadingCorrections}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection>
+						<uxap:blocks>
+							<VBox>
+								<f:SimpleForm singleContainerFullSize="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanS="12" labelSpanM="4" labelSpanL="3"
+									emptySpanXL="0" emptySpanS="0" emptySpanM="0" emptySpanL="0" editable="true" columnsXL="3" columnsM="4" columnsL="3" adjustLabelSpan="false">
+									<f:content>
+										<core:Title/>
+										<Label text="{i18n>reason}" required="true" design="Bold"/>
+                                            <ComboBox class="sapUiSizeCompact"  id="ReasonId" enabled="{BindingModel>/ReasonEdit}" items="{path: 'Reasonmodel>/'}" selectedKey="{CreateModel>/Reason}" 
+                                                showSecondaryValues="true"   selectionChange="onReasonChange">
+                                                <core:ListItem key="{Reasonmodel>Key}" text="{Reasonmodel>Key}" additionalText="{Reasonmodel>TypeName}"/>
+                                                    <layoutData>
+                                                        <l:GridData span="XL7 L7 M3 S12"/>
+                                                    </layoutData>
+                                            </ComboBox>
+										<core:Title/>
+										<Label text="{i18n>bolref3Lookup}" required="{BindingModel>/BOLRequired}" design="Bold">
+                                        	<layoutData>
+												<l:GridData span="XL5 L5 M3 S12"/>
+											</layoutData>
+                                        </Label>
+                                        <Input type="Number" id="BOLId" maxLength="10" value="{CreateModel>/BOL}" enabled="{BindingModel>/BOLEdit}" change="onBOLChange" 
+                                         liveChange="onBOLLiveChange"> </Input>                            
+                                     							
+										<core:Title/>
+										<Label></Label>
+									</f:content>
+								</f:SimpleForm>
+								<f:SimpleForm visible="{BindingModel>/FormVisible}" singleContainerFullSize="false" layout="ResponsiveGridLayout" labelSpanXL="3"
+									labelSpanS="12" labelSpanM="4" labelSpanL="3" emptySpanXL="0" emptySpanS="0" emptySpanM="0" emptySpanL="0" editable="true" columnsXL="3"
+									columnsM="4" columnsL="3" adjustLabelSpan="false">
+									<f:content>
+										<core:Title/>
+										<Label text="{i18n>glid}" design="Bold"/>
+										    <Input id="GlidId" value="{CreateModel>/NewGlid}" enabled="{BindingModel>/GlidEdit}" change="onGlidChange"></Input>
+										    <Text text="{CreateModel>/OldGlid}">
+												<layoutData>
+												    <l:GridData span="XL5 L5 M2 S4"/>
+											    </layoutData>
+										    </Text>
+                                        <Label text="{i18n>scac}" design="Bold"/>
+										    <Input id="ScacId" value="{CreateModel>/NewScac}" enabled="{BindingModel>/ScacEdit}"  change="onScacChange" maxLength="4"></Input>
+										    <Text text="{CreateModel>/OldScac}">
+												<layoutData>
+												    <l:GridData span="XL5 L5 M2 S4"/>
+											    </layoutData>
+										    </Text>
+																		
+										<core:Title/>
+										<Label text="{i18n>trailer}" design="Bold">
+                                        	<layoutData>
+												<l:GridData span="XL5 L5 M2 S4"/>
+											</layoutData>
+                                        </Label>
+										    <Input id="TrailerId" value="{CreateModel>/NewTrailer}" enabled="{BindingModel>/TrailerEdit}"  change="onTrailerChange"></Input>
+										    <Text text="{CreateModel>/OldTrailer}">
+												<layoutData>
+											    	<l:GridData span="XL3 L3 M2 S4"/>
+											    </layoutData>
+										    </Text>
+                                        <Label text="{i18n>date}" design="Bold">
+                                            <layoutData>
+										        <l:GridData span="XL5 L5 M2 S4"/>
+											</layoutData>
+                                        </Label>
+										    <DatePicker id="DateId" maxDate="{oDateModel>/maxDate}" class="TrailerClass" enabled="{BindingModel>/DateEdit}" placeholder="MM/dd/YYY" value="{CreateModel>/NewDate}" displayFormat="MM/dd/YYYY" valueFormat="MM/dd/YYYY" change="onNewDateChange"></DatePicker>
+										    <Text text="{CreateModel>/OldDate}">
+												<layoutData>
+											    	<l:GridData span="XL3 L3 M2 S4"/>
+											    </layoutData>
+										    </Text>									
+										
+									</f:content>
+								</f:SimpleForm>
+								<ScrollContainer id="scrollId" class="scroll" focusable="false" vertical="true" height="calc(100vh - 200px)" horizontal="true" width="auto">
+									<Table id="TableId" class="TableClass" visible="{BindingModel>/TableVisible}" growing="true" items="{path: 'navigationModel>/Sample'}" growingThreshold="20"
+										growingScrollToLoad="true" >
+										<headerToolbar>
+											<Toolbar>
+												<ToolbarSpacer ></ToolbarSpacer>
+												<Button icon="sap-icon://add" type="Emphasized" press="onAdd" visible="{BindingModel>/AddButton}"></Button>
+											</Toolbar>
+										</headerToolbar>
+										<columns>
+											<Column styleClass="cellBorderLeft cellBorderRight" width="3rem">
+												<Label text="{i18n>no}" wrapping="true"/>
+											</Column>
+											<Column styleClass="cellBorderLeft cellBorderRight" width="4rem">
+												<Label text="{i18n>reason}" wrapping="true"/>
+											</Column>
+											<Column styleClass="cellBorderLeft cellBorderRight" width="3rem">
+												<Label text="{i18n>item}" wrapping="true"/>
+											</Column>
+											<Column styleClass="cellBorderLeft" width="9rem">
+												<Label text="{i18n>batch}" wrapping="true"/>
+											</Column>
+											<Column width="9rem">
+												<Label text="{i18n>material}" wrapping="true"/>
+											</Column>
+											<Column styleClass="cellBorderRight" width="5rem">
+												<Label text="{i18n>quantity}" wrapping="true"/>
+											</Column>
+											<Column styleClass="cellBorderLeft" width="10rem">
+												<Label text="{i18n>batch}" wrapping="true"/>
+											</Column>
+											<Column width="10rem">
+												<Label text="{i18n>material}" wrapping="true"/>
+											</Column>
+											<Column styleClass="cellBorderRight" width="5rem">
+												<Label text="{i18n>quantity}" wrapping="true"/>
+											</Column>
+                                            <Column styleClass="cellBorderLeft cellBorderRight" width="9rem">
+												<Label text="{i18n>comments}" wrapping="true"/>
+											</Column>
+                                             <Column width="2rem">
+												<Label text="" wrapping="true"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem press="_onInitialTableItemPress">
+												<cells>
+													<Text text="{CreateModel>No}"></Text>
+													<ComboBox class="sapUiSizeCompact" selectedKey="{CreateModel>Reason}"  showSecondaryValues="true"
+													selectionChange="onSelectType" enabled="{CreateModel>ReasonEdit}">
+														<core:ListItem key="01" additionalText="QUANTITY CORRECTIONS" text="01"/>
+														<core:ListItem key="02" additionalText="MATERIAL CHANGE" text="02"/>
+														<core:ListItem key="03" additionalText="MATERIAL ADDITION" text="03" enabled="false"/>
+													</ComboBox>
+													<Text text="{CreateModel>ItemNo}"></Text>
+													<Text text="{CreateModel>OldBatch}"></Text>
+													<Text text="{CreateModel>OldMaterial}"></Text>
+													<Text text="{CreateModel>OldQuantity}"></Text>
+                                                    <Input value="{CreateModel>NewBatch}" enabled="{CreateModel>NewBatchEdit}" change="onBatchSubmit" submit="onBatchSubmit" valueHelpRequest="onBatchValueHelpRequest" showValueHelp="true" valueHelpOnly="false"></Input>
+												    <Input value="{CreateModel>NewMaterial}" enabled="{CreateModel>NewMaterialEdit}" change="onMaterialSubmit" submit="onMaterialSubmit" valueHelpRequest="onMaterialValueHelpRequest" showValueHelp="true" valueHelpOnly="false"></Input>
+											    	<Input value="{CreateModel>NewQuantity}" enabled="{CreateModel>NewQuantityEdit}" change="onQuantitySubmit" submit="onQuantitySubmit" ></Input>
+                                                    <Input value="{CreateModel>Comments}" enabled="{CreateModel>CommentsEdit}"></Input>
+                                                   	<core:Icon	src="sap-icon://delete" class="size1"	color="#E14343" visible="{CreateModel>DeleteButton}" press="onDelete">                                                  
+		                                            </core:Icon>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</VBox>
+                        </uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<OverflowToolbar class="sapUiSizeCompact">
+				<Bar>
+					<contentRight>
+						<Button type="Emphasized" text="{i18n>save}" press="onSave" visible="{BindingModel>/saveButton}"/>
+                        <Button type="Emphasized" text="{i18n>submit}" press="onSubmit" visible="{BindingModel>/submitButton}"/>
+                        <Button type="Emphasized" text="{i18n>resubmit}" press="onResubmit" visible="{BindingModel>/resubmitButton}"/>
+						<Button type="Emphasized" text="{i18n>cancel}" press="onCancel" visible="{BindingModel>/cancelButton}"/>
+						<Button type="Emphasized" text="{i18n>back}" press="onBack" visible="{BindingModel>/backButton}"/>
+					</contentRight>
+				</Bar>
+			</OverflowToolbar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+
+</mvc:View>

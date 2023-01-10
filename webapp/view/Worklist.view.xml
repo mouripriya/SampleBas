@@ -1,0 +1,288 @@
+<mvc:View
+    controllerName="com.Techbol.techbol.controller.Worklist"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f" 
+    xmlns:fb="sap.ui.comp.filterbar" 
+    xmlns:core="sap.ui.core" 
+    xmlns:semantic="sap.f.semantic">
+
+      <f:DynamicPage headerExpanded="true" class="sapUiSizeCompact" showFooter="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+                <Toolbar class="toolClass">
+                  <Button type="Back" press="onNavBack" />
+                  <Title text="{i18n>overview}" />
+                </Toolbar>
+                   <!-- <Button type="Back" press="onNavBack" />
+					<Title text="{i18n>overview}"/> -->
+				</f:heading>
+				<f:actions>
+				<Button text="{i18n>createNewCorrection}" type="Emphasized" press="onCreate"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<f:content>
+					<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" showClearOnFB="true" useToolbar="false" showGoOnFB="true"
+						showClearButton="true" clear="onClear">
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="{i18n>correctionId}" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="CorrectionId" value="{BindingModel>/CorrectionId1}" showValueHelp="true" valueHelpRequest="onCorrectionIdValueHelpRequest"
+										suggestionItemSelected="onCorrectionIdSuggestSelected" suggest="onCorrectionIdSuggest" showSuggestion="true"
+										suggestionItems="{CorrectionIdSuggestModel>/results}">                                
+										<suggestionItems>
+											<core:ListItem text="{CorrectionIdSuggestModel>Corid}"/>
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="{i18n>createdDateRange}" visibleInFilterBar="true">
+								<fb:control>
+									<DateRangeSelection id="DateRangeId" value="{BindingModel>/CreateDateRange}" class="DateTextClass" delimiter="-"  displayFormat="MM/dd/yyyy" valueFormat="MM/dd/yyyy" change="handleChange"/>		
+                            	</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="C" label="{i18n>createdBy}" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>									
+                                    <Input id="CreatedById" value="{BindingModel>/CreatedBy1}" showValueHelp="true" valueHelpRequest="onCreatedByValueHelpRequest"
+										suggestionItemSelected="onCreatedBySuggestSelected" suggest="onCreatedBySuggest" showSuggestion="true"
+										suggestionItems="{CreatedBySuggestModel>/results}">                                
+										<suggestionItems>
+											<core:ListItem text="{CreatedBySuggestModel>Ernam}"/>
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="E" label="{i18n>plant}" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>			
+                                 <Input id="PlantId" value="{BindingModel>/Plant1}" showValueHelp="true" valueHelpRequest="onPlantValueHelpRequest"
+										valueHelpOnly="true">                           
+							     </Input>    						                                     
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="F" label="{i18n>status}" visibleInFilterBar="true">
+								<fb:control>
+									<MultiComboBox selectedKeys="{BindingModel>/Status}"  selectionChange="onComboBoxChangeStatus" class="sapUiContentPadding" id="StatusId">
+										<core:Item key="DRAFT" text="DRAFT"/>
+										<core:Item key="PENDING TM APPROVAL" text="PENDING TM APPROVAL"/>
+										<core:Item key="SUCCESS" text="SUCCESS"/>
+										<core:Item key="CANCELED" text="CANCELED"/>
+										<core:Item key="APPROVED TM" text="APPROVED TM"/>
+										<core:Item key="REJECTED TM" text="REJECTED TM"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+            <VBox>
+            <Toolbar>						
+			<ToolbarSpacer></ToolbarSpacer>					
+			<Button icon="sap-icon://excel-attachment" press="onExport" tooltip="Export" type="Emphasized"></Button>
+			<Button icon="sap-icon://action-settings" press="onPerso" tooltip="Personalization" type="Emphasized"></Button>
+			</Toolbar>
+            <ScrollContainer focusable="false" horizontal="true" vertical="true" width="100%" height="calc(100vh - 270px)">
+            <content> 
+			<Table id="OverviewTable" items="{path: 'oModel1>/Sample'}" mode="MultiSelect" updateFinished="onUpdateFinished"
+				sticky="ColumnHeaders" includeItemInSelection="false" class="sapUiSizeCompact OverviewTable" growing="true" growingScrollToLoad="true"
+				growingThreshold="200" selectionChange="onItemSelChange">			
+				<columns>
+					<Column id="col1" width="7rem">
+						<Label text="{i18n>correctionId}" />
+					</Column>
+					<!-- <Column id="col2" width="8rem">
+						<Label text="{i18n>companyCode}" />
+					</Column> -->
+					<Column id="col3" width="4rem">
+						<Label text="{i18n>type}" />
+					</Column>
+					<Column id="col4" width="4rem">
+						<Label text="{i18n>plant}" />
+					</Column>
+					<Column id="col5" width="3rem">
+						<Label text="{i18n>shift}" />
+					</Column>
+					<Column id="col6"  width="6rem">
+						<Label text="{i18n>actDate}" />
+					</Column>
+					<Column id="col7"  width="12rem">
+						<Label text="{i18n>status}" />
+					</Column>
+					<Column id="col8"  width="6rem">
+						<Label text="{i18n>statDate}" />
+					</Column>
+					<Column id="col9"  width="6rem">
+						<Label text="{i18n>statTime}" />
+					</Column>
+					<Column id="col10" width="6rem">
+						<Label text="{i18n>createDate}" />
+					</Column>
+					<Column id="col11" width="6rem">
+						<Label text="{i18n>createTime}" />
+					</Column>
+					<Column id="col12" width="7rem">
+						<Label text="{i18n>createdBy}" />
+					</Column>
+					<Column id="col13" width="7rem">
+						<Label text="{i18n>actualMonth}" />
+					</Column>
+					<Column id="col14" width="6rem">
+						<Label text="{i18n>subDate}" />
+					</Column>
+					<Column id="col15" width="6rem">
+						<Label text="{i18n>subTime}" />
+					</Column>
+					<Column id="col16" width="7rem">
+						<Label text="{i18n>subUser}" />
+					</Column>
+					<Column id="col17" width="7rem">
+						<Label text="{i18n>expectedRep}" />
+					</Column>
+					<Column id="col18" width="7rem">
+						<Label text="{i18n>repAprDate}" />
+					</Column>
+					<Column id="col19" width="7rem">
+						<Label text="{i18n>repAprTime}" />
+					</Column>
+					<Column id="col20" width="7rem">
+						<Label text="{i18n>repApprover}" />
+					</Column>
+					<Column id="col21" width="7rem">
+						<Label text="{i18n>expectedTM}" />
+					</Column>
+					<Column id="col22" width="7rem">
+						<Label text="{i18n>tmAprDate}" />
+					</Column>
+					<Column id="col23" width="7rem">
+						<Label text="{i18n>tmAprTime}" />
+					</Column>
+					<Column id="col24" width="7rem">
+						<Label text="{i18n>tmApprover}" />
+					</Column>
+					<Column id="col25" width="6rem">
+						<Label text="{i18n>rejDate}" />
+					</Column>
+					<Column id="col26" width="6rem">
+						<Label text="{i18n>rejTime}" />
+					</Column>
+					<Column id="col27" width="7rem">
+						<Label text="{i18n>rejUser}" />
+					</Column>
+					<Column id="col28" width="9rem">
+						<Label text="{i18n>rejectionReason}" />
+					</Column>
+					<Column id="col29" width="4rem">
+						<Label text="{i18n>flag}" />
+					</Column>
+					<Column id="col30" width="7rem">
+						<Label text="{i18n>processDate}" />
+					</Column>
+					<Column id="col31" width="7rem">
+						<Label text="{i18n>processTime}" />
+					</Column>
+					<Column id="col32" width="7rem">
+						<Label text="{i18n>processUser}" />
+					</Column>
+					<Column id="col33" width="7rem">
+						<Label text="{i18n>delivery}" />
+					</Column>
+					<Column id="col34" width="7rem">
+						<Label text="{i18n>purchaseDoc}" />
+					</Column>
+					<Column id="col35" width="7rem">
+						<Label text="{i18n>materialDoc}" />
+					</Column>
+					<Column id="col36" width="7rem">
+						<Label text="{i18n>matDocYear}" />
+					</Column>
+                    <Column id="col37" width="7rem">
+						<Label text="{i18n>eventType}" />
+					</Column>
+                    <Column id="col38" width="7rem">
+						<Label text="{i18n>materialDoc}" />
+					</Column>
+					<Column id="col39" width="7rem">
+						<Label text="{i18n>matDocYear}" />
+					</Column>
+                    <Column id="col40" width="7rem">
+						<Label text="{i18n>materialDoc}" />
+					</Column>
+					<Column id="col41" width="7rem">
+						<Label text="{i18n>matDocYear}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem press="onRowPress" type="Navigation">
+						<cells>
+							<Text text="{oModel1>Corid}"></Text>
+							<!-- <Text text="{CorrectionModel>Bukrs}"/> -->
+							<Text text="{oModel1>Cortype}"/>
+							<Text text="{oModel1>Plant}"/>
+							<Text text="{oModel1>Shift}"></Text>						
+                            <Text text="{path:'oModel1>ActDate',formatter:'.formatter.DateFormat'}"></Text>                            
+							<Text text="{oModel1>Status}"></Text>
+							<Text text="{path:'oModel1>StartDate',formatter:'.formatter.DateFormat'}"></Text>			
+                            <Text text="{path:'oModel1>StartTime',formatter:'.formatter.TimeFormat'}"></Text>
+							<Text text="{path:'oModel1>CreateDate',formatter:'.formatter.DateFormat'}"></Text>
+                            <Text text="{path:'oModel1>CreateTime',formatter:'.formatter.TimeFormat'}"></Text>					
+							<Text text="{oModel1>CreatedBy}"></Text>
+							<Text text="{oModel1>Accmonth}"></Text>
+							<Text text="{path:'oModel1>Subdat',formatter:'.formatter.DateFormat'}"></Text>
+                            <Text text="{path:'oModel1>Subtim',formatter:'.formatter.TimeFormat'}"></Text>							
+							<Text text="{oModel1>Subnam}"/>
+							<Text text="{oModel1>EaprnamRep}"/>
+							<Text text="{path:'oModel1>AprdatRep',formatter:'.formatter.DateFormat'}"></Text>
+                            <Text text="{path:'oModel1>AprtimRep',formatter:'.formatter.TimeFormat'}"></Text>							
+							<Text text="{oModel1>AprnamRep}"></Text>
+							<Text text="{oModel1>EaprnamTm}"></Text>
+							<Text text="{path:'oModel1>AprdatTm',formatter:'.formatter.DateFormat'}"></Text>
+                            <Text text="{path:'oModel1>AprtimTm',formatter:'.formatter.TimeFormat'}"></Text>							
+							<Text text="{oModel1>AprnamTm}"></Text>
+							<Text text="{path:'oModel1>Rejdat',formatter:'.formatter.DateFormat'}"></Text>
+                            <Text text="{path:'oModel1>Rejtim',formatter:'.formatter.TimeFormat'}"></Text>								
+							<Text text="{oModel1>Rejnam}"></Text>
+							<Text text="{oModel1>Rejreason}"/>						
+                            <Text text="{path:'oModel1>Flag',formatter:'.formatter.FlagFormat'}"/>
+							<Text text="{path:'oModel1>Prodat',formatter:'.formatter.DateFormat'}"/>
+                            <Text text="{path:'oModel1>Protim',formatter:'.formatter.TimeFormat'}"></Text>						
+							<Text text="{oModel1>Pronam}"></Text>
+							<Text text="{oModel1>Vbeln}"></Text>
+							<Text text="{oModel1>Ebeln}"></Text>
+							<Text text="{oModel1>Mblnr}"></Text>					
+                            <Text text="{path:'oModel1>Mjahr',formatter:'.formatter.YearFormat'}"></Text>
+							<Text text="{oModel1>Evntcd}"></Text>
+                            <Text text="{oModel1>Rblnr}"></Text>						
+                            <Text text="{path:'oModel1>Rjahr',formatter:'.formatter.YearFormat'}"></Text>
+                            <Text text="{oModel1>Nblnr}"></Text>		
+                            <Text text="{path:'oModel1>Njahr',formatter:'.formatter.YearFormat'}"></Text>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+            </content>
+            </ScrollContainer>
+            <Bar id="SeeMoreBar" visible="false">         
+                <contentMiddle>
+                    <Button class="textBold" id="SeeMoreID" press="onSeeMore" text="{i18n>seeMore}" width="100px" />
+                </contentMiddle>
+            </Bar>
+            </VBox>
+		</f:content>
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Emphasized" text="{i18n>submit}" press="onSubmit" enabled="{BindingModel>/submitEnabled}"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+
+</mvc:View>

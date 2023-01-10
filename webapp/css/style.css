@@ -1,0 +1,212 @@
+
+
+/* Enter your custom styles here */
+
+.toolClass.sapMTBStandard {
+    border-bottom: none !important;
+}
+
+.sapFDynamicPageHeader {
+    padding: 0rem 2rem 0.5rem 2rem !important;
+}
+
+.sapFDynamicPageTitle {
+    padding: 0rem 2rem !important;
+    min-height: 0rem !important;
+}
+
+.sapFDynamicPageContentFitContainer {
+    padding-top: 0rem !important;
+}
+
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 0rem !important;
+    /*line-height: 2rem;*/
+}
+
+.sapUiFormResGrid>div {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+.ObjectClass .sapUiSizeCompact .sapUxAPObjectPageHeaderIdentifier,
+.sapUxAPObjectPageHeaderIdentifier {
+    padding: 0rem 2rem !important;
+}
+
+.ObjectClass .sapUxAPObjectPageHeaderContent {
+    padding: 0rem 2rem !important
+}
+
+.ObjectClass .sapUxAPObjectPageHeaderContent .sapUxAPObjectPageHeaderContentItem {
+    line-height: 1rem !important;
+}
+
+.ObjectClass .sapUxAPObjectPageSection {
+    margin: 0rem !important;
+}
+
+.ObjectClass .sapUxAPBlockContainer {
+    padding: 0rem 2rem 0rem 1rem !important;
+}
+
+.ObjectClass .sapUxAPObjectPageSubSection {
+    padding: 0rem !important;
+    background-color: #E5F0FA !important;
+}
+
+/* .sapUiRespGridMedia-Std-Phone.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanS12)>.sapMLabel,
+.sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanM12)>.sapMLabel,
+.sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanL12)>.sapMLabel,
+.sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanXL12)>.sapMLabel {
+    text-align: left !important;
+} */
+
+
+.OverviewTable .sapMTableTBody:not(.sapMListTblHasPopin)>.sapMLIBSelected, .sapMTableTBody.sapMListTblHasPopin>.sapMLIBSelected+.sapMListTblSubRow {
+    /* box-shadow: inset 0 -0.0625rem #eff2f5; */
+    box-shadow: none !important;
+}
+.OverviewTable .sapMLIB.sapMLIBSelected {
+    background: white !important;
+}
+
+.TableClass .sapMTitle {
+    font-weight: normal !important;
+    font: size 0.9rem !important;
+}
+
+
+.TableClass .sapMListTblCell.cellBorderRight {
+    border-right: 1px !important;
+}
+
+.TableClass .sapMListTblCell.cellBorderLeft {
+    border-left: 1px solid lightgray !important;
+}
+
+.TableClass .sapMListTbl {
+    border-top: 1px solid lightgray !important;
+    border-right: 1px solid lightgray !important;
+}
+
+.TableClass .sapMListTblCell {
+    padding: 0rem 0.25rem !important;
+}
+/* Upload Class */
+/* .scroll {
+    margin: 0px 0px 0px 0px !important;
+    border: none !important;
+}
+.uploadClass .sapUiIcon {
+    font-size: large !important;
+    color: black !important;
+}
+
+.uploadClass .sapMUCNoDataPage .sapMUCNoDataText {
+    font-size: 0.75rem !important;
+    color: red !important;
+    display: none !important;
+    padding: 0px !important;
+    font-weight: bold !important;
+}
+
+.uploadClass .sapMUCNoDataPage .sapMUCNoDataDescription {
+    display: block !important;
+    font-size: 0.75rem !important;
+    color: red !important;
+    padding: 0rem 0rem 1rem 0rem !important;
+    font-weight: bold !important;
+}
+
+.uploadClass .sapMTB-Transparent-CTX>.sapMTitleTB.sapMTitleStyleAuto {
+    font-size: small !important;
+    color: black !important;
+    text-shadow: none !important;
+}
+
+.uploadClass .sapMListUl {
+    border: 1px solid grey !important;
+}
+
+.uploadClass .sapMUCNoDataPage {
+    padding: 1rem 1rem 0rem 1rem !important;
+} */
+
+    .uploadClass .sapUiIcon {
+        font-size: small !important;
+        color: black !important;
+    }
+    
+    .uploadClass .sapMUCNoDataPage .sapMUCNoDataText {
+        font-size: 0.75rem !important;
+        color: red !important;
+        display: none !important;
+        padding: 0px !important;
+        font-weight: bold !important;
+    }
+    
+    .uploadClass .sapMUCNoDataPage .sapMUCNoDataDescription {
+        display: block !important;
+        font-size: 0.75rem !important;
+        color: red !important;
+        padding: 0rem 0rem 2rem 0rem !important;
+        font-weight: bold !important;
+    }
+    
+    .uploadClass .sapMTB-Transparent-CTX>.sapMTitleTB.sapMTitleStyleAuto {
+        font-size: small !important;
+        color: #457FB9 !important;
+        text-shadow: none !important;
+        font-weight: bold !important;
+    }
+    /*.uploadClass .sapMListUl {*/
+    /*    border: 1px solid grey !important;*/
+    /*}*/
+    
+    .uploadClass .sapMUCNoDataPage {
+        padding: 1rem 1rem 0rem 1rem !important;
+    }
+    
+    .uploadClass .sapMUCFileName.sapMLnk {
+        font-size: 13px !important;
+        padding-top: 0rem !important;
+    }
+    
+    .uploadClass .sapMObjectAttributeDiv .sapMText {
+        font-size: 13px !important;
+    }
+    
+    .uploadClass .sapMUCItem {
+        padding: 10px 0px 0px 0px !important;
+    }
+    
+    .scrollClass {
+        border: .0625rem solid #89919a;
+        border-radius: 2px !important;
+    }
+    /*.uploadClass .sapMLIB {*/
+    /*    border-bottom: none !important;*/
+    /*}*/
+    
+    .uploadClass .sapMTB {
+        height: 25px !important;
+    }
+    
+    .scrollClass::-webkit-scrollbar {
+        width: 10px !important;
+    }
+    
+    .scrollClass::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .scrollClass::-webkit-scrollbar-thumb {
+        background-color: darkgrey !important;
+        outline: 1px solid slategrey !important;
+        maxheight: 10px !important;
+    }
+
+    .TrailerClass .sapMInputBaseInner {     
+        font-size: .82rem !important;
+    }

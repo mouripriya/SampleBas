@@ -1,0 +1,26 @@
+{
+	 "Sample1" :{
+		"Plant": "",
+		"ActDate": "",
+		"Shift": "",
+		"Status": "",
+		"Attach": "",
+		"Reason": "",
+		"Gild": "",
+		"Scac": "",
+		"BOL/Ref 3 Lookup": "",
+		"Date": "false",
+		"No": "true",
+		"Reson": "",
+		"Item": "" ,
+		"Batch":"",
+		"Material":"",
+		"Quantity": "",
+        "Batch": "",
+		"Material":"",
+		"Quantity": "",
+		"Comments":""
+
+		
+	 }
+}

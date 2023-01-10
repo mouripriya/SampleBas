@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Dialog class="sapUiSizeCompact" contentHeight="70%" contentWidth="15%" title="{i18n>plant}" afterClose="onPlantClose">
+		<Toolbar>
+			<SearchField search="onPlantSearch" width="100%"/>
+		</Toolbar>
+		<Table backgroundDesign="Translucent" includeItemInSelection="true" items="{path: 'PlantModel>/Plant'}" mode="SingleSelectLeft"
+			selectionChange="onPlantSelChange" growing="true" growingThreshold="20" growingScrollToLoad="true">
+			<columns>
+				<Column demandPopin="true" minScreenWidth="Tablet">
+					<header>
+						<Label design="Bold" text="{i18n>plant}"/>
+					</header>
+				</Column>			
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{PlantModel>plant}"/>						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button press="onPlantCancel" text="{i18n>cancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
